@@ -29,7 +29,7 @@ __version__ = "1.2.0"
 # a little odd looking number is the fourth root of two. That means
 # with four clicks you double or half the size, as precisely as
 # possible.
-zoom_step = 2.0**0.20
+zoom_step = 2.0**0.25
 
 config = mw.addonManager.getConfig(__name__)
 
