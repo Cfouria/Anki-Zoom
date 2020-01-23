@@ -1,5 +1,7 @@
 # Anki-Zoom
 
+### Removed mouse ~C4ia
+
 Zoom add-on for Anki, forked from [ospalh/anki-addons](https://github.com/ospalh/anki-addons).
 
 The add-on allows you to:

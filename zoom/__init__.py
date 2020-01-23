@@ -29,7 +29,7 @@ __version__ = "1.2.0"
 # a little odd looking number is the fourth root of two. That means
 # with four clicks you double or half the size, as precisely as
 # possible.
-zoom_step = 2.0**0.25
+zoom_step = 2.0**0.20
 
 config = mw.addonManager.getConfig(__name__)
 
@@ -110,23 +110,6 @@ def setup_menu():
     add_action(mw.zoom_submenu, '&Reset', reset_zoom, 'Ctrl+0')
 
 
-def handle_wheel_event(event):
-    """
-    Zoom on mouse wheel events with Ctrl.
-
-    Zoom in our out on mouse wheel events when Ctrl is pressed.  A
-    standard mouse wheel click is 120/8 degree. Zoom by one step for
-    that amount.
-    """
-    if event.modifiers() & Qt.ControlModifier:
-        step = event.angleDelta().y()
-        if step > 0:
-            zoom_in()
-        elif step < 0:
-            zoom_out()
-    else:
-        original_mw_web_wheelEvent(event)
-
 def real_zoom_factor(self):
     """Use the default zoomFactor.
 
@@ -136,8 +119,6 @@ def real_zoom_factor(self):
 
 
 addHook('afterStateChange', set_zoom)
-original_mw_web_wheelEvent = mw.web.wheelEvent
-mw.web.wheelEvent = handle_wheel_event
 mw.web.zoomFactor = MethodType(real_zoom_factor, mw.web)
 AnkiWebView.zoomFactor = real_zoom_factor
 setup_menu()
